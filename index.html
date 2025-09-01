@@ -7,7 +7,7 @@
   body {
     margin: 0;
     height: 100vh;
-    background-image: url('hello-kittyx.jpg');
+    background-image: url('hello-kitty.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -15,5 +15,232 @@
 </style>
 </head>
 <body>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aşk Defteri & 3 Yılımız Albümü</title>
+<style>
+  body{margin:0;padding:0;font-family:Arial,sans-serif;background:url('hello-kittyx.jpg') no-repeat center center fixed;background-size:cover;color:white;text-align:center;}
+  header{background:#c71585;padding:20px;font-size:2em;font-weight:bold;font-family:'Papyrus',cursive;}
+  .container{display:flex;justify-content:center;gap:40px;padding:30px;flex-wrap:wrap;}
+  .model-box{background:#222;border-radius:15px;padding:20px;width:220px;box-shadow:0 0 15px #c71585;cursor:pointer;position:relative;}
+  .model-box img{width:100%;border-radius:12px;box-shadow:0 0 12px #c71585;transition:transform .3s ease;display:block;margin:0 auto;}
+  .model-box:hover img{transform:scale(1.05);}
+  .model-title{margin-top:12px;font-size:1.3em;font-family:'Papyrus',cursive;color:#ffaad3;user-select:none;}
+  #album-photos{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#330022;padding:20px;border-radius:15px;box-shadow:0 0 40px #c71585;max-width:90vw;max-height:90vh;z-index:2000;text-align:center;user-select:none;}
+  #album-photos .photo-wrapper{position:relative;display:inline-block;}
+  #album-photos img{max-width:80vw;max-height:70vh;border-radius:15px;box-shadow:0 0 40px #ffaad3;transition:opacity .6s ease,box-shadow .6s ease;}
+  #album-photos .ribbon{position:absolute;top:2px;left:2px;width:50px;height:50px;background-image:url('images/pemb.png');background-size:contain;background-repeat:no-repeat;pointer-events:none;z-index:10;transform:rotate(-20deg);}
+  #album-photos .close-btn{position:absolute;top:10px;right:15px;font-size:2.5em;color:#ffaad3;cursor:pointer;user-select:none;}
+  #album-photos .nav-btn{position:absolute;top:50%;transform:translateY(-50%);font-size:3em;color:#ffaad3;cursor:pointer;padding:10px;background:rgba(199,21,133,0.5);border-radius:50%;}
+  #album-photos .nav-btn:hover{background:rgba(199,21,133,0.8);}
+  #album-photos #prevBtn{left:10px;} #album-photos #nextBtn{right:10px;}
+  #music-player{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#330022;padding:25px;border-radius:20px;box-shadow:0 0 40px #c71585;z-index:3000;width:350px;text-align:center;}
+  #music-player audio{width:100%;border-radius:10px;margin-top:15px;box-shadow:0 0 20px #c71585;}
+  #loveNote{background:#ffaad3;color:#800040;padding:20px;border-radius:15px;font-family:'Papyrus',cursive;font-size:1.2em;line-height:1.4;box-shadow:0 0 20px #ff69b4;margin-bottom:15px;opacity:1;transition:opacity 2s ease;}
+  #stopHint{margin-top:15px;color:#c71585;font-family:'Papyrus',cursive;font-size:1em;text-shadow:0 0 8px #ff69b4;}
+  #dailyMusicNote,#quizNote{margin-top:8px;font-family:'Papyrus',cursive;color:#c71585;font-size:.95em;text-shadow:0 0 8px #ff69b4;animation:pulse 2.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.65;}}
+  #quiz-popup{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#330022;padding:30px;border-radius:20px;box-shadow:0 0 60px #c71585;max-width:500px;max-height:90vh;width:90%;z-index:4000;text-align:center;overflow-y:auto;}
+  .quiz-question{text-align:left;margin:15px 0;font-size:1.1em;}
+  .quiz-options button{display:block;margin:6px 0;width:100%;padding:10px;border:none;border-radius:10px;background:#c71585;color:white;cursor:pointer;font-family:'Papyrus',cursive;font-size:1em;transition:all .4s ease;}
+  .quiz-options button:hover{background:#ff69b4;}
+  .correct{box-shadow:0 0 25px 5px #00ff00;background:#00cc00!important;}
+  .wrong{box-shadow:0 0 25px 5px #ff0000;background:#cc0000!important;}
+  #jar-popup{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#2a001e;padding:28px;border-radius:20px;box-shadow:0 0 60px #ff69b4;max-width:520px;width:92%;z-index:4500;text-align:center;}
+  #jar-popup .close-btn{position:absolute;top:10px;right:15px;font-size:2.2em;color:#ffaad3;cursor:pointer;}
+  #jar-title{font-family:'Papyrus',cursive;color:#ffaad3;font-size:1.5em;margin-bottom:12px;text-shadow:0 0 10px #ff69b4;}
+  #jar-question,#jar-answer{background:#330022;border-radius:14px;padding:16px;margin:10px 0;min-height:64px;display:none;box-shadow:0 0 20px #c71585;}
+  #jar-actions{margin-top:10px;}
+  #drawBtn,#nextDrawBtn{border:none;border-radius:12px;padding:12px 16px;background:#c71585;color:white;font-family:'Papyrus',cursive;cursor:pointer;box-shadow:0 0 12px #ff69b4;}
+  #drawBtn:hover,#nextDrawBtn:hover{background:#ff69b4;}
+</style>
+</head>
+<body>
+
+<header>I LOVE MY GIRLFRIEND</header>
+
+<div class="container">
+  <div class="model-box" id="albumCover">
+    <img src="images/kitap.png" alt="3 Yılımız Albüm Kapak">
+    <div class="model-title">3 Yılımız</div>
+  </div>
+
+  <div class="model-box" id="askKavanozu">
+    <img src="images/kavanoz.png" alt="Aşk Kavanozu">
+    <div class="model-title">Aşk Kavanozu</div>
+  </div>
+
+  <div class="model-box" id="gununMuzigi">
+    <img src="images/nota.png" alt="Müzik Notası">
+    <div class="model-title" style="color:white;">Günün Müziği</div>
+    <div id="dailyMusicNote">Her gün yeni bir müzik için saat 22.30'da seni bekliyorum meleğim</div>
+  </div>
+
+  <div class="model-box" id="biz10soru">
+    <img src="images/soru.png" alt="Biz ve 10 Soru">
+    <div class="model-title">Biz ve 10 Soru</div>
+    <div id="quizNote">Her 2 günde bir yeni test için 22.30'da burda ol meleğim</div>
+  </div>
+</div>
+
+<section id="album-photos">
+  <span class="close-btn" id="closeAlbum">&times;</span>
+  <span class="nav-btn" id="prevBtn">&#10094;</span>
+  <span class="nav-btn" id="nextBtn">&#10095;</span>
+  <div class="photo-wrapper">
+    <div class="ribbon"></div>
+    <img id="currentPhoto" src="" alt="Fotoğraf">
+  </div>
+</section>
+
+<section id="music-player">
+  <span id="closeMusicPlayer">&times;</span>
+  <div id="loveNote">Her aşk bir müzikle başlar,<br>bizim başlangıcımız ise...</div>
+  <audio id="audioPlayer" controls></audio>
+  <div id="songTitle"></div>
+  <div id="stopHint">Günün Müziğinden çıktığında müzik çalmaya devam edecek meleğim,<br>müziği durdurmak istersen <b>Alt+M</b> kısayolunu kullanabilirsin &lt;3</div>
+</section>
+
+<section id="quiz-popup">
+  <span class="close-btn" id="closeQuiz">&times;</span>
+  <div id="quiz-container"></div>
+</section>
+
+<section id="jar-popup">
+  <span class="close-btn" id="closeJar">&times;</span>
+  <div id="jar-title">Aşk Kavanozu</div>
+  <div id="jar-question"></div>
+  <div id="jar-answer"></div>
+  <div id="jar-actions">
+    <button id="drawBtn">Kavanozdan Çek</button>
+    <button id="nextDrawBtn" style="display:none;">Bir tane daha ✨</button>
+  </div>
+</section>
+
+<script>
+/* ===== Albüm ===== */
+const albumCover=document.getElementById('albumCover'),
+      albumPhotos=document.getElementById('album-photos'),
+      closeAlbumBtn=document.getElementById('closeAlbum'),
+      prevBtn=document.getElementById('prevBtn'),
+      nextBtn=document.getElementById('nextBtn'),
+      currentPhoto=document.getElementById('currentPhoto');
+
+const photos=[]; for(let i=2;i<=123;i++) photos.push(`images/p${i}.jpg`);
+let currentIndex=0, autoSlide;
+
+function showPhoto(index){
+  currentPhoto.style.opacity=0;
+  setTimeout(()=>{currentPhoto.src=photos[index]; currentPhoto.style.opacity=1;},400);
+}
+
+albumCover.addEventListener('click',()=>{albumPhotos.style.display='block'; currentIndex=0; showPhoto(currentIndex); clearInterval(autoSlide); autoSlide=setInterval(()=>{currentIndex=(currentIndex+1)%photos.length; showPhoto(currentIndex);},3000);});
+closeAlbumBtn.addEventListener('click',()=>{albumPhotos.style.display='none'; clearInterval(autoSlide);});
+prevBtn.addEventListener('click',()=>{currentIndex=(currentIndex===0)?photos.length-1:currentIndex-1; showPhoto(currentIndex);});
+nextBtn.addEventListener('click',()=>{currentIndex=(currentIndex===photos.length-1)?0:currentIndex+1; showPhoto(currentIndex);});
+
+/* ===== Günün Müziği ===== */
+const musicPlayer=document.getElementById('music-player'),
+      gununMuzigiBox=document.getElementById('gununMuzigi'),
+      closeMusicPlayer=document.getElementById('closeMusicPlayer'),
+      audioPlayer=document.getElementById('audioPlayer'),
+      loveNote=document.getElementById('loveNote'),
+      songTitle=document.getElementById('songTitle');
+
+gununMuzigiBox.addEventListener('click',()=>{
+  musicPlayer.style.display='block';
+  loveNote.style.display='block'; loveNote.style.opacity='1';
+  audioPlayer.src='songs/Until I Found You (Em Beihold Version).mp3';
+  songTitle.textContent='Until I Found You (Em Beihold Version)';
+  audioPlayer.play();
+  setTimeout(()=>{loveNote.style.opacity='0'; setTimeout(()=>{loveNote.style.display='none';},2000);},5000);
+});
+closeMusicPlayer.addEventListener('click',()=>{musicPlayer.style.display='none';});
+
+/* ===== Biz ve 10 Soru ===== */
+const quizPopup=document.getElementById('quiz-popup'),
+      closeQuiz=document.getElementById('closeQuiz'),
+      quizContainer=document.getElementById('quiz-container'),
+      biz10soru=document.getElementById('biz10soru');
+
+const quizData=[
+  {q:"Çıkma Yıldönümümüz?", options:["30 Kasım 2022","30 Eylül 2023","30 Eylül 2022","29 Eylül 2022"], answer:"C"},
+  {q:"Beraber izlediğimiz ilk film?", options:["Pulp Fiction","Eternal Sunshine Of The Spotless Mind","How to Lose A Guy In 10 Days","Man of Steel"], answer:"D"},
+  {q:"Telefon hanemin son 2 numarası :)", options:["7650","7196","2126","8200"], answer:"B"},
+  {q:"10.Sınıfta ilk tanıştığımızda bana hangi uygulamanın apk versiyonunu atmıştın?", options:["Snapchat","Youtube Premium","Spotify","Netflix"], answer:"C"},
+  {q:"Çıkmaya başladıktan sonra ilk buluştuğumuz ve son buluştuğumuz yerler neresi", options:["Migros/Makyol","Kütüphane/Migros","Kütüphane/Marmara Park","Migros/Avcılar"], answer:"B"},
+  {q:"İlk buluştuğumuz gün teyzenlere gitmiştin meleğim hatırlıyor musun? Oradaki perdeler ne renkti", options:["Mor","Beyaz","Kırmızı","Mavi"], answer:"A"},
+  {q:"Beraber yediğimiz ilk yemek", options:["Doyuyo","Burger King Ekonomikings","Arby's","Popeyes"], answer:"B"},
+  {q:"Okuldan dönmeye başladığımız ilk günler bindiğimiz otobüsün kodu neydi", options:["448","418","BM7","458"], answer:"D"},
+  {q:"Peki hangisi 458 duraklarından biri değil?", options:["Kartopu","Fesleğen","Nane","Lale"], answer:"C"},
+  {q:"Ve günün son sorusu... Stardew Valleydeki çocuklarımızın ismi neydi", options:["Yağız/Ayşe","Yavuz/Eftalya","Yavuz/Damla","Yarkın/Eftalya"], answer:"B"}
+];
+
+let quizIndex=0, score=0;
+function showQuizQuestion(){
+  if(quizIndex>=quizData.length){quizContainer.innerHTML=`<h2>Quiz Tamamlandı!</h2><p>Puanın: ${score} / ${quizData.length*10}</p>`; return;}
+  const q=quizData[quizIndex];
+  let html=`<div class="quiz-question"><b>Soru ${quizIndex+1}:</b> ${q.q}</div><div class="quiz-options">`;
+  q.options.forEach((opt,i)=>{const letter=String.fromCharCode(65+i); html+=`<button onclick="checkAnswer(this,'${letter}')">${letter}) ${opt}</button>`;});
+  html+=`</div>`;
+  quizContainer.innerHTML=html;
+}
+function checkAnswer(button,selected){
+  const q=quizData[quizIndex];
+  if(selected===q.answer){score+=10; button.classList.add('correct');}
+  else{button.classList.add('wrong'); document.querySelectorAll('.quiz-options button').forEach(b=>{if(b.textContent.startsWith(q.answer)) b.classList.add('correct');});}
+  document.querySelectorAll('.quiz-options button').forEach(b=>b.disabled=true);
+  setTimeout(()=>{quizIndex++; showQuizQuestion();},1000);
+}
+biz10soru.addEventListener('click',()=>{quizIndex=0;score=0;quizPopup.style.display='block';showQuizQuestion();});
+closeQuiz.addEventListener('click',()=>{quizPopup.style.display='none';});
+
+/* ===== Aşk Kavanozu ===== */
+const askKavanozu=document.getElementById('askKavanozu'),
+      jarPopup=document.getElementById('jar-popup'),
+      closeJar=document.getElementById('closeJar'),
+      drawBtn=document.getElementById('drawBtn'),
+      nextDrawBtn=document.getElementById('nextDrawBtn'),
+      jarQuestion=document.getElementById('jar-question'),
+      jarAnswer=document.getElementById('jar-answer');
+
+const jarQuestions=[
+  {q:"Çıkma Yıldönümümüz?", ans:"30 Eylül 2022"},
+  {q:"Beraber izlediğimiz ilk film?", ans:"Man of Steel"},
+  {q:"İlk el ele tutuştuğumuz yer?", ans:"Kütüphane tabiki şapşal"},
+  {q:"İlk öpücüğümüz?", ans:"Çamlık ve okul dönüşü"},
+  {q:"En çok hangi anımızı hatırlamak istersin?", ans:"Birçok anımız var fakat en çok hatırlamak istediğim anımız yatakta uzanırken gözlerine bakıp uzun uzun gülümsediğimiz zamanı hatırlamak isterdim"},
+  {q:"Bana en romantik gelen sürpriz hangisiydi?", ans:"BANA KAZAK ÖRMEN"},
+  {q:"Ve son olarak beni neden seviyorsun?", ans:"Seni sen olduğun için ve bana hayatımı tekrar geri kazandırdığın için seviyorum. İyi ki varsın meleğim"},
+  {q:"İlk mesajlaşmamızda ne hissetmiştin?", ans:"Beni ilk kez olduğum gibi kabul eden ve sıkıntımın aynısını yaşayan birisi olduğunu ve ruh eşi olduğumuzu düşünmüstüm"},
+  {q:"Seni ilk gördüğüm andan itibaren ne düşündüm?", ans:"Senle konuştuğum ilk saniyeden itibaren seni özlemeye başladım. Sen özlenmeye en çok değecek kişisin birtanem"},
+  {q:"Seni en çok ne zaman seviyorum dedin?", ans:"Senin her anın bana özel hissettiriyor bebeğim. Fakat bir tane seçecek olursam bana seni seviyorum dediğin her an"}
+  // Daha fazla soruyu buraya ekleyebilirsin
+];
+
+let jarIndex=0;
+function showJarQuestion(){
+  if(jarIndex>=jarQuestions.length){jarPopup.innerHTML=`<div id="jar-title">Aşk Kavanozu</div><p>Tüm aşk mesajları çekildi 💖</p><button id="closeJarFinal">Kapat</button>`;document.getElementById('closeJarFinal').addEventListener('click',()=>{jarPopup.style.display='none';});return;}
+  const q=jarQuestions[jarIndex];
+  jarQuestion.style.display='block'; jarAnswer.style.display='none';
+  jarQuestion.textContent=q.q;
+}
+drawBtn.addEventListener('click',()=>{
+  showJarQuestion();
+  drawBtn.style.display='none';
+  nextDrawBtn.style.display='none';
+  setTimeout(()=>{jarAnswer.style.display='block'; jarAnswer.textContent=jarQuestions[jarIndex].ans; nextDrawBtn.style.display='inline-block';},2000);
+});
+nextDrawBtn.addEventListener('click',()=>{jarIndex++; drawBtn.style.display='inline-block'; nextDrawBtn.style.display='none'; jarQuestion.textContent=''; jarAnswer.textContent='';});
+askKavanozu.addEventListener('click',()=>{jarPopup.style.display='block'; jarIndex=0; drawBtn.style.display='inline-block'; nextDrawBtn.style.display='none'; jarQuestion.textContent=''; jarAnswer.textContent='';});
+closeJar.addEventListener('click',()=>{jarPopup.style.display='none';});
+</script>
+
 </body>
 </html>
